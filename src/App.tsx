@@ -1,14 +1,18 @@
 import React from 'react';
-import {useSelector} from "react-redux";
-import {stat} from "fs";
+import {UserSlice} from "./store/reducers/UserSlice";
+import {useDispatch} from "react-redux";
 import {useAppSelector} from "./hooks/redux";
 
 
-function App() {
 
-  return (
+function App() {
+    const {count} = useAppSelector(state => state.userReducer)
+    const {increment} = UserSlice.actions;
+    const dispatch = useDispatch();
+   return (
     <div className="App">
-      heart
+        <h1>{count}</h1>
+        <button onClick={() => dispatch(increment(8))}>INCREMENT</button>
     </div>
   );
 }
